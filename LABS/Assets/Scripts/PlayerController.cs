@@ -21,8 +21,10 @@ public class PlayerController : MonoBehaviour
     bool isHit = false;
     float hitTime = 0.0f;
     float hitInterval = 1.0f;
-    Material mater;
-    Color defaultColor;         // Prototype Var
+    [SerializeField]
+    Sprite DefaultSprite = null; // Inspector
+    [SerializeField]
+    Sprite Damaged = null; // Inspector 
 
     public Text healthText;     // Inspector
     public Text ScoreText;      // Inspector
@@ -30,10 +32,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rigid2D = GetComponent<Rigidbody2D>();
-        mater = GetComponent<MeshRenderer>().material;
-        defaultColor = mater.color; // Prototype Var
     }
-
+    
     void Update()
     {
         Move();
@@ -49,8 +49,7 @@ public class PlayerController : MonoBehaviour
             if(hitTime >= hitInterval)
             {
                 hitTime = 0.0f;
-
-                mater.color = defaultColor; // Prototype Var
+                
                 isHit = false; 
             }
         }
@@ -85,31 +84,37 @@ public class PlayerController : MonoBehaviour
 
         --health;
         healthText.text = health.ToString();
-        mater.color = Color.blue;
         isHit = true;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void Heal()
     {
-        if (collision.gameObject.CompareTag("Ground"))   { isGround = true; }
-        
-        if (collision.gameObject.CompareTag("HealKit"))
+        if (health < maxhealth)
         {
-            if (health < maxhealth)
-            {
-                ++health;
-                healthText.text = health.ToString();
-            }
-            Destroy(collision.gameObject);
+            ++health;
+            healthText.text = health.ToString();
         }
     }
-    private void OnCollisionStay2D(Collision2D collision)
+    
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Hit"))      { Hit(); }
-    }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))   { isGround = false; }
+        if (collision.gameObject.CompareTag("HealKit")) { Heal(); Destroy(collision.gameObject); }
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Hit")) { Hit(); }
+    }
+
+    #region IsGround Collider
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground")) { isGround = true; }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground")) { isGround = false; }
+    }
+    #endregion
 }
