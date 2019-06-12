@@ -447,7 +447,7 @@ GameObject:
   - component: {fileID: 525928494}
   - component: {fileID: 525928493}
   m_Layer: 5
-  m_Name: HealthText
+  m_Name: HealthNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -727,7 +727,7 @@ GameObject:
   - component: {fileID: 790781293}
   - component: {fileID: 790781292}
   m_Layer: 5
-  m_Name: HealthValueText
+  m_Name: HealthText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -822,7 +822,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 936215622}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.72, z: 0}
+  m_LocalPosition: {x: 0, y: -2.09, z: 0}
   m_LocalScale: {x: 1, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1781125062}
@@ -841,12 +841,12 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.12056434, y: -0.81}
+  m_Offset: {x: 0.12056434, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 19.877647, y: 3.3}
-    newSize: {x: 19.877647, y: 3.3}
+    oldSize: {x: 19.877647, y: 1.0999999}
+    newSize: {x: 19.877647, y: 1.0999999}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -916,7 +916,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 19.877647, y: 3.3}
+  m_Size: {x: 19.877647, y: 1.0999999}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -1201,6 +1201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Events: []
   healkitMgr: {fileID: 977686353}
+  ScoreText: {fileID: 1579551300}
 --- !u!114 &1169452826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1286,7 +1287,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1285282458
 Transform:
   m_ObjectHideFlags: 0
@@ -1315,7 +1316,7 @@ GameObject:
   - component: {fileID: 1579551301}
   - component: {fileID: 1579551300}
   m_Layer: 5
-  m_Name: ScoreValueText
+  m_Name: ScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1685,15 +1686,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63fa9f4f91cdecd4fa70942c2898c56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
-  maxhealth: 3
-  isHit: 0
   hitSprites:
   - {fileID: 21300000, guid: cb1a26d0f6c55dc4c9a9b38748a72ca8, type: 3}
   - {fileID: 21300000, guid: 82691c08bd0889d44961a0e65e7ce9eb, type: 3}
-  spriteCount: 0
   healthText: {fileID: 790781292}
-  ScoreText: {fileID: 1579551300}
 --- !u!1 &1867179766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1710,7 +1706,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1867179767
 Transform:
   m_ObjectHideFlags: 0
@@ -1817,7 +1813,7 @@ GameObject:
   - component: {fileID: 1884138818}
   - component: {fileID: 1884138817}
   m_Layer: 5
-  m_Name: ScoreText
+  m_Name: ScoreNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2170,15 +2166,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2052438660}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17a140ea19e231347a5c561716186ff9, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f35f8ad30fa3f242887b34238ed2346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Config:
   - {fileID: 0}
   - {fileID: 0}
   curState: 0
-  dangerInterval: 3
-  playInterval: 1
+  dangerInterval: 2.5
+  playInterval: 1.3
 --- !u!1 &2083940252
 GameObject:
   m_ObjectHideFlags: 0

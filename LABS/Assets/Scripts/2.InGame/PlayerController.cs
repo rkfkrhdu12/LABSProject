@@ -15,12 +15,9 @@ public class PlayerController : MonoBehaviour
     int jumpCount = 0;
     bool isGround = true;
 
-    [SerializeField]
     int health = 3;
-    [SerializeField]
     int maxhealth = 3;
 
-    [SerializeField]
     bool isHit = false;
     float hitTime = 0.0f;
     float hitInterval = 2.5f;
@@ -30,7 +27,6 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField]
     Sprite[] hitSprites = new Sprite[2]; // Inspector
-    [SerializeField]
     int spriteCount = 0;
     enum eHitSprite
     {
@@ -38,8 +34,8 @@ public class PlayerController : MonoBehaviour
         DAMAGED,
     }
 
+    [SerializeField]
     public Text healthText = null;     // Inspector
-    public Text ScoreText = null;      // Inspector
 
     void Start()
     {

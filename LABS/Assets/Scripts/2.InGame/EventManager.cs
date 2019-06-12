@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EventManager : MonoBehaviour
 {
@@ -13,7 +14,6 @@ public class EventManager : MonoBehaviour
     int curEvent = 0;
     public enum eEventState
     {
-        START,
         PLAY,
         END,
     }
@@ -21,6 +21,10 @@ public class EventManager : MonoBehaviour
 
     float restTime = 0.0f;
     float restInterval = 4.0f;
+
+    public Text ScoreText = null;      // Inspector
+    int curScore = 0;
+    int addScore = 1;
 
     public void Start()
     {
@@ -33,21 +37,13 @@ public class EventManager : MonoBehaviour
 
         healkitMgr = GetComponent<HealKitManager>();
 
-        curEvent = Random.Range(0, eventCount - 1);
-        Events[curEvent].Reset();
-        curState = eEventState.PLAY;
+        Init();
     }
     
     public void Update()
     {
         switch (curState)
         {
-            case eEventState.START:
-                curEvent = Random.Range(0, eventCount - 1);
-                Events[curEvent].Reset();
-                curState = eEventState.PLAY;
-                break;
-
             case eEventState.PLAY:
                 if (Events[curEvent].curState == Event.ePlayEventState.PLAYEND)
                 {
@@ -61,9 +57,20 @@ public class EventManager : MonoBehaviour
                 if (restTime >= restInterval)
                 {
                     restTime = 0.0f;
-                    curState = eEventState.START;
+
+                    curScore += addScore;
+                    ScoreText.text = curScore.ToString();
+
+                    Init();
                 }
                 break;
         }
+    }
+
+    void Init()
+    {
+        curEvent = Random.Range(0, eventCount - 1);
+        Events[curEvent].Reset();
+        curState = eEventState.PLAY;
     }
 }

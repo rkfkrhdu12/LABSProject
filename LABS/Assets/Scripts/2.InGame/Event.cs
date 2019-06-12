@@ -5,9 +5,14 @@ using UnityEngine;
 public class Event : MonoBehaviour
 {
     [SerializeField]
-    GameObject[] Config = new GameObject[2];
+    protected GameObject[] Config = new GameObject[2];
+    protected enum eConfig
+    {
+        DANGER,
+        PLAY,
+    }
 
-    Vector3 defaultVector;
+    //Vector3 defaultVector;
 
     public enum ePlayEventState
     {
@@ -26,12 +31,12 @@ public class Event : MonoBehaviour
     [SerializeField]
     float playInterval = 1.3f;
 
-    void Start()
+    virtual public void Start()
     {
-        Config[0] = transform.GetChild(0).gameObject;
-        Config[1] = transform.GetChild(1).gameObject;
+        Config[(int)eConfig.DANGER] = transform.GetChild((int)eConfig.DANGER).gameObject;
+        Config[(int)eConfig.PLAY] = transform.GetChild((int)eConfig.PLAY).gameObject;
 
-        defaultVector = Config[1].transform.position;
+        //defaultVector = Config[1].transform.position;
 
         dangerTime = 0.0f;
         playTime = 0.0f;
@@ -42,49 +47,56 @@ public class Event : MonoBehaviour
         curState = ePlayEventState.DANGERSTART;
     }
 
-    private void Update()
+    public void Update()
     {
         switch(curState)
         {
             case ePlayEventState.DANGERSTART:
                 DangerStart();
+
+                curState = ePlayEventState.DANGER;
                 break;
+
             case ePlayEventState.DANGER:
-                DangerUpdate();
+                dangerTime += Time.deltaTime;
+                if (dangerTime >= dangerInterval)
+                {
+                    dangerTime = 0;
+
+                    DangerUpdate();
+
+                    curState = ePlayEventState.PLAY;
+                }
                 break;
+
             case ePlayEventState.PLAY:
-                PlayUpdate();
+                playTime += Time.deltaTime;
+                if (playTime >= playInterval)
+                {
+                    playTime = 0.0f;
+
+                    PlayUpdate();
+
+                    curState = ePlayEventState.PLAYEND;
+                }
                 break;
         }
     }
 
-    void DangerStart()
+    virtual public void DangerStart()
     {
-        Config[0].SetActive(true);  // DangerSprite On
-        Config[1].SetActive(false); // PlaySprite Off
-        curState = ePlayEventState.DANGER;
+        Config[(int)eConfig.DANGER].SetActive(true);
+        Config[(int)eConfig.PLAY].SetActive(false);
     }
 
-    void DangerUpdate()
+    virtual public void DangerUpdate()
     {
-        dangerTime += Time.deltaTime;
-        if (dangerTime >= dangerInterval)
-        {
-            dangerTime = 0.0f;
-            Config[0].SetActive(false);
-            Config[1].SetActive(true);
-            Config[1].transform.position = defaultVector;
-            curState = ePlayEventState.PLAY;
-        }
+        Config[(int)eConfig.DANGER].SetActive(false);
+        Config[(int)eConfig.PLAY].SetActive(true);
     }
 
-    void PlayUpdate()
+    virtual public void PlayUpdate()
     {
-        playTime += Time.deltaTime;
-        if (playTime >= playInterval)
-        {
-            playTime = 0.0f;
-            curState = ePlayEventState.PLAYEND;
-        }
+        
     }
 }

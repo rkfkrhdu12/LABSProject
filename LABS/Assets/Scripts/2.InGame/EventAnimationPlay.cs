@@ -21,8 +21,6 @@ public class EventAnimationPlay : MonoBehaviour
 
     public void AnimationEnd()
     {
-        Debug.Log("1");
-        GetComponent<BoxCollider2D>().size = Vector2.zero;
         isEnd = true;
     }
 }
