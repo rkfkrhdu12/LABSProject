@@ -2,36 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventPlay : MonoBehaviour
+public class EventPlay : Object
 {
     EventAnimationPlay ani;
     bool isAniPlay = false;
 
-    Rigidbody2D rigid;
-
-    private void Start()
+    override protected void Start()
     {
+        base.Start();
+
         ani = transform.GetChild(0).GetComponent<EventAnimationPlay>();
-        rigid = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
         if(isAniPlay && ani.isEnd)
         {
-            rigid.gravityScale = 1;
+            rigid.gravityScale = gravityPower;
             isAniPlay = false;
             gameObject.SetActive(false);
         }
     }
-    
 
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    override protected void OnTriggerEnter2D(Collider2D collision)
     {
+        base.OnTriggerEnter2D(collision);
+
         if (collision.CompareTag("Ground") && !isAniPlay) 
         {
-            rigid.gravityScale = 0;
-            rigid.velocity = new Vector2(0, 0);
             ani.Play();
             isAniPlay = true;
         }

@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\2.InGame\EventManager.cs" />
      <Compile Include="Assets\Scripts\2.InGame\EventPlay.cs" />
      <Compile Include="Assets\Scripts\2.InGame\HealKitManager.cs" />
+     <Compile Include="Assets\Scripts\2.InGame\Object.cs" />
      <Compile Include="Assets\Scripts\2.InGame\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Test\testScripts.cs" />
  <Reference Include="Unity.Timeline.Editor">

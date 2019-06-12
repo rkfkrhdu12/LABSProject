@@ -23,10 +23,7 @@ public class Event01 : Event
     public override void DangerUpdate()
     {
         base.DangerUpdate();
-    }
 
-    public override void PlayUpdate()
-    {
-        base.PlayUpdate();
+        Config[(int)eConfig.DANGER].transform.position = new Vector3(player.transform.position.x, Config[(int)eConfig.DANGER].transform.position.y);
     }
 }

@@ -6,10 +6,13 @@ public class HealKitManager : MonoBehaviour
 {
     public GameObject healKit;
     int createCount = 3;
+    
     int curCount = 0;
     public void Create()
     {
         curCount++;
+        Debug.Log(curCount.ToString());
+
         if (curCount == createCount)
         {
             curCount = 0;
