@@ -17,13 +17,12 @@ public class Event01 : Event
     {
         base.DangerStart();
 
-        Config[(int)eConfig.PLAY].transform.position = defaultVector;
+        Config[(int)eConfig.PLAY].transform.position = new Vector3(transform.position.x, defaultVector.y);
     }
 
     public override void DangerUpdate()
     {
-        base.DangerUpdate();
-
-        Config[(int)eConfig.DANGER].transform.position = new Vector3(player.transform.position.x, Config[(int)eConfig.DANGER].transform.position.y);
+        gameObject.transform.position = new Vector3(player.transform.position.x, Config[(int)eConfig.DANGER].transform.position.y);
     }
+
 }

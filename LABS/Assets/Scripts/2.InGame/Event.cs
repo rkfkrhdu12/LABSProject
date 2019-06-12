@@ -31,6 +31,10 @@ public class Event : MonoBehaviour
     [SerializeField]
     float playInterval = 1.0f;
 
+    float playOnTime = 0.0f;
+    [SerializeField]
+    float playOnInterval = .1f;
+
     virtual public void Start()
     {
         player = GameObject.Find("Player").gameObject;
@@ -47,14 +51,13 @@ public class Event : MonoBehaviour
         curState = ePlayEventState.DANGERSTART;
     }
 
-    public void Update()
+    public virtual void Update()
     {
         switch(curState)
         {
             case ePlayEventState.DANGERSTART:
                 DangerStart();
 
-                curState = ePlayEventState.DANGER;
                 break;
 
             case ePlayEventState.DANGER:
@@ -62,11 +65,7 @@ public class Event : MonoBehaviour
                 DangerUpdate();
                 if (dangerTime >= dangerInterval)
                 {
-                    dangerTime = 0;
-
-                    DangerEnd();
-
-                    curState = ePlayEventState.PLAY;
+                    PlayStart();
                 }
                 break;
 
@@ -76,7 +75,6 @@ public class Event : MonoBehaviour
                 if (playTime >= playInterval)
                 {
                     playTime = 0.0f;
-
 
                     curState = ePlayEventState.PLAYEND;
                 }
@@ -88,17 +86,31 @@ public class Event : MonoBehaviour
     {
         Config[(int)eConfig.DANGER].SetActive(true);
         Config[(int)eConfig.PLAY].SetActive(false);
+
+
+        curState = ePlayEventState.DANGER;
     }
 
     virtual public void DangerUpdate()
     {
 
     }
-
-    virtual public void DangerEnd()
+    
+    virtual public void PlayStart()
     {
-        Config[(int)eConfig.DANGER].SetActive(false);
-        Config[(int)eConfig.PLAY].SetActive(true);
+        Debug.Log(playOnTime.ToString());
+        playOnTime += Time.deltaTime;
+        if (playOnTime >= playOnInterval)
+        {
+            Debug.Log("ON");
+            playOnTime = 0;
+            dangerTime = 0;
+
+            Config[(int)eConfig.DANGER].SetActive(false);
+            Config[(int)eConfig.PLAY].SetActive(true);
+
+            curState = ePlayEventState.PLAY;
+        }
     }
 
     virtual public void PlayUpdate()
