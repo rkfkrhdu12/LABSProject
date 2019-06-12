@@ -95,7 +95,7 @@ MonoBehaviour:
   m_MinSize: {x: 911, y: 442}
   m_MaxSize: {x: 22006, y: 10021}
   vertical: 0
-  controlID: 77
+  controlID: 140
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 201, y: 442}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 57
+  controlID: 117
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -161,8 +161,8 @@ MonoBehaviour:
     y: 0
     width: 408
     height: 947
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -366,23 +366,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: e2330000
-      m_LastClickedID: 13282
-      m_ExpandedIDs: 7efbffff683300007c330000e2330000
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 68fbffff7033000084330000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Event
-        m_OriginalName: Event
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 13180
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 7}
       m_SearchString: 
@@ -478,7 +478,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: d4330000
     m_LastClickedID: 13268
-    m_ExpandedIDs: 000000006c3400006e34000070340000723400007434000076340000783400007a3400007c3400007e34000080340000
+    m_ExpandedIDs: 000000007434000076340000783400007a3400007c3400007e3400008034000082340000843400008634000088340000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -506,7 +506,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff000000006c3400006e34000070340000723400007434000076340000783400007a3400007c3400007e34000080340000
+    m_ExpandedIDs: ffffffff000000007434000076340000783400007a3400007c3400007e3400008034000082340000843400008634000088340000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
