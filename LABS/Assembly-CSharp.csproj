@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\2.InGame\Event.cs" />
      <Compile Include="Assets\Scripts\2.InGame\EventAnimationPlay.cs" />
      <Compile Include="Assets\Scripts\2.InGame\EventChild\Event01.cs" />
+     <Compile Include="Assets\Scripts\2.InGame\EventChild\Event02.cs" />
      <Compile Include="Assets\Scripts\2.InGame\EventManager.cs" />
      <Compile Include="Assets\Scripts\2.InGame\EventPlay.cs" />
      <Compile Include="Assets\Scripts\2.InGame\HealKitManager.cs" />

@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     float moveSpeed = 6f;
     float moveX = 0;
 
+    [SerializeField]
     float jumpPower = 6f;
     int jumpCount = 0;
     bool isGround = true;
@@ -66,6 +67,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) { moveRight = 1; }
 
         moveX = (moveRight + moveLeft) * moveSpeed;
+
         transform.Translate(moveX * Time.deltaTime, 0,0);
     }
 
@@ -74,9 +76,9 @@ public class PlayerController : MonoBehaviour
         if(isGround) { jumpCount = 0; }
 
         if (jumpCount == 2) { return; }
-        
-        rigid2D.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
 
+        rigid2D.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+        
         ++jumpCount;
     }
 

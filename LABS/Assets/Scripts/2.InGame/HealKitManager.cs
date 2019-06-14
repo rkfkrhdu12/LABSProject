@@ -11,7 +11,6 @@ public class HealKitManager : MonoBehaviour
     public void Create()
     {
         curCount++;
-        Debug.Log(curCount.ToString());
 
         if (curCount == createCount)
         {

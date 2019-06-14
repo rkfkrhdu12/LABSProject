@@ -22,7 +22,7 @@ public class Event01 : Event
 
     public override void DangerUpdate()
     {
-        gameObject.transform.position = new Vector3(player.transform.position.x, Config[(int)eConfig.DANGER].transform.position.y);
+        gameObject.transform.position = new Vector3(player.transform.position.x, gameObject.transform.position.y);
     }
 
 }

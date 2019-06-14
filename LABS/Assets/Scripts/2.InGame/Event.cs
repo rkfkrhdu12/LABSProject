@@ -23,17 +23,20 @@ public class Event : MonoBehaviour
     }
     public ePlayEventState curState;
 
-    float dangerTime = 0.0f;
+    protected float dangerTime = 0.0f;
     [SerializeField]
-    float dangerInterval = 2.5f;
+    protected float dangerInterval = 2.5f;
 
-    float playTime = 0.0f;
+    protected float playTime = 0.0f;
     [SerializeField]
-    float playInterval = 1.0f;
+    protected float playInterval = 1.0f;
 
-    float playOnTime = 0.0f;
+    protected float playOnTime = 0.0f;
     [SerializeField]
-    float playOnInterval = .1f;
+    protected float playOnInterval = .1f;
+
+    [SerializeField]
+    protected Sprite nullSprite; // inspector
 
     virtual public void Start()
     {
@@ -76,6 +79,8 @@ public class Event : MonoBehaviour
                 {
                     playTime = 0.0f;
 
+                    EventEnd();
+
                     curState = ePlayEventState.PLAYEND;
                 }
                 break;
@@ -98,16 +103,14 @@ public class Event : MonoBehaviour
     
     virtual public void PlayStart()
     {
-        Debug.Log(playOnTime.ToString());
         playOnTime += Time.deltaTime;
         if (playOnTime >= playOnInterval)
         {
-            Debug.Log("ON");
+            Config[(int)eConfig.PLAY].SetActive(true);
+            Config[(int)eConfig.DANGER].SetActive(false);
+
             playOnTime = 0;
             dangerTime = 0;
-
-            Config[(int)eConfig.DANGER].SetActive(false);
-            Config[(int)eConfig.PLAY].SetActive(true);
 
             curState = ePlayEventState.PLAY;
         }
@@ -116,5 +119,10 @@ public class Event : MonoBehaviour
     virtual public void PlayUpdate()
     {
         
+    }
+
+    virtual public void EventEnd()
+    {
+
     }
 }

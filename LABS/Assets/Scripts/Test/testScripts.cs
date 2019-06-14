@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class testScripts : MonoBehaviour
 {
-    Rigidbody2D rig;
 
-    private void Start()
+    public Transform target;
+    void Update()
     {
-        rig = GetComponent<Rigidbody2D>();
-    }
+        Vector3 dir = target.position - transform.position;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Ground"))
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        if (Input.GetKey(KeyCode.A))
         {
-            Debug.Log("1");
-            rig.gravityScale = 0;
-            rig.velocity = new Vector2(0,0);
+            transform.Translate(-5*Time.deltaTime, 0,0);
         }
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.Translate(5 * Time.deltaTime, 0,0);
+        }
+               
     }
 }
