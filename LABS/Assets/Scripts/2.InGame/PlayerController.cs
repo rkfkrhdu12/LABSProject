@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
 
         if (jumpCount == 2) { return; }
 
-        rigid2D.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+        rigid2D.velocity = new Vector2(0, jumpPower);
         
         ++jumpCount;
     }

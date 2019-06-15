@@ -37,7 +37,6 @@ public class EventManager : MonoBehaviour
 
         healkitMgr = GetComponent<HealKitManager>();
 
-        Init();
     }
     
     public void Update()
@@ -69,7 +68,8 @@ public class EventManager : MonoBehaviour
 
     void Init()
     {
-        curEvent = Random.Range(0, eventCount - 1);
+        curEvent = Random.Range(0, eventCount);
+        Debug.Log(curEvent + " " + eventCount);
         Events[curEvent].Reset();
         curState = eEventState.PLAY;
     }
