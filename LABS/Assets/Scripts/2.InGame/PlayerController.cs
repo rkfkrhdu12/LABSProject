@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rigid2D;
     SpriteRenderer sprite;
 
+    [SerializeField]
     float moveSpeed = 6f;
     float moveX = 0;
 
@@ -17,13 +18,15 @@ public class PlayerController : MonoBehaviour
     bool isGround = true;
 
     int health = 3;
-    int maxhealth = 3;
+    GameObject hp;
 
     bool isHit = false;
     float hitTime = 0.0f;
+    [SerializeField]
     float hitInterval = 2.5f;
 
     float hitAniTime = 0.0f;
+    [SerializeField]
     float hitAniInterval = 0.5f;
     
     [SerializeField]
@@ -36,7 +39,11 @@ public class PlayerController : MonoBehaviour
     }
 
     [SerializeField]
-    public Text healthText = null;     // Inspector
+    float healCoolTime = 0;
+    float healCoolInterval = 1.0f;
+    bool isHeal = true;
+
+    ScoreManager scoreMgr;
 
     void Start()
     {
@@ -44,6 +51,12 @@ public class PlayerController : MonoBehaviour
         sprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
 
         hitAniInterval = hitInterval / 6;
+
+        scoreMgr = GameObject.Find("UI").GetComponent<ScoreManager>();
+
+        hp = GameObject.Find("Hp");
+
+        Init();
     }
     
     void Update()
@@ -56,6 +69,15 @@ public class PlayerController : MonoBehaviour
         }
 
         Hitted();
+
+        if (!isHeal)
+        {
+            healCoolTime += Time.deltaTime;
+            if (healCoolTime >= healCoolInterval)
+            {
+                isHeal = true;
+            }
+        }
     }
 
     void Move()
@@ -81,13 +103,14 @@ public class PlayerController : MonoBehaviour
         
         ++jumpCount;
     }
-
+    
     void Hit()
     {
         if(isHit) { return; }
 
-        --health;
-        healthText.text = health.ToString();
+        scoreMgr.curEvent = ScoreManager.eEventState.COL;
+
+        hp.transform.GetChild(--health).gameObject.SetActive(false);
         isHit = true;
     }
 
@@ -118,20 +141,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Heal()
+    public int GetHp()
     {
-        if (health < maxhealth)
-        {
-            ++health;
-            healthText.text = health.ToString();
-        }
-    }
-    
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("HealKit")) { Heal(); Destroy(collision.gameObject); }
+        return health;
     }
 
+    public void Init()
+    {
+        health = 3;
+        for (int i = 0; i < health; ++i) 
+        {
+            hp.transform.GetChild(i).gameObject.SetActive(true);
+        }
+
+        transform.localPosition = new Vector3(0, 0, -10);
+    }
+    
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Hit")) { Hit(); }

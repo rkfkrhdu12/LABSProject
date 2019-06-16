@@ -1,26 +1,55 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class testScripts : MonoBehaviour
 {
-
-    public Transform target;
-    void Update()
+    public SpriteRenderer a;
+    Color c;
+    bool isOn = false;
+    float timer = 0;
+    public float Timer = 2;
+    
+    void Start()
     {
-        Vector3 dir = target.position - transform.position;
+        c = a.color;
+        c.a = 0;
+        a.color = c;
+    }
 
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    public void Update()
+    {
+        a.color = c;
+        if (isOn)
+        {
+            if (c.a >= 1)
+            {
+                c.a = 1;
+            }
+            else
+            {
+                timer += Time.deltaTime;
+                c.a += Time.deltaTime / Timer;
+            }
+        }
+        Debug.Log((int)timer + "   "  + c);
 
-        if (Input.GetKey(KeyCode.A))
+    }
+
+    public void U()
+    {
+        if (isOn)
         {
-            transform.Translate(-5*Time.deltaTime, 0,0);
+            c = a.color;
+            c.a = 0;
+            a.color = c;
+
+            isOn = false;
         }
-        if (Input.GetKey(KeyCode.D))
+        else
         {
-            transform.Translate(5 * Time.deltaTime, 0,0);
+            isOn = true;
         }
-               
     }
 }

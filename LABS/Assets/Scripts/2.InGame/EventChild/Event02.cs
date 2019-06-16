@@ -13,7 +13,7 @@ public class Event02 : Event
     int maxPizzaCount = 5;
 
     [SerializeField]
-    Sprite pizzaImage; // inspector
+    Sprite pizzaImage = null; // inspector
 
     float pizzaTime = 0.0f;
     [SerializeField]

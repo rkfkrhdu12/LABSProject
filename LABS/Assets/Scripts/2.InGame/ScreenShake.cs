@@ -10,12 +10,13 @@ public class ScreenShake : MonoBehaviour
     public Transform camTransform;
 
     // How long the object should shake for.
-    public float shake = 0f;
+    float shake = 0f;
 
     // Amplitude of the shake. A larger value shakes the camera harder.
-    public float shakeAmount = 0.1f;
+    public float shakeAmount = 0.3f;
+    float defaultAmount;
     public float decreaseFactor = 1.0f;
-
+    public float shakeTime = 0.5f;
     Vector3 originalPos;
 
     void Awake()
@@ -24,12 +25,14 @@ public class ScreenShake : MonoBehaviour
         {
             camTransform = GetComponent(typeof(Transform)) as Transform;
         }
+
         OnEnable();
     }
 
     void OnEnable()
     {
         originalPos = camTransform.localPosition;
+        defaultAmount = shakeAmount;
     }
 
     void Update()
@@ -43,6 +46,7 @@ public class ScreenShake : MonoBehaviour
         else
         {
             shake = 0f;
+            shakeAmount = defaultAmount;
             camTransform.localPosition = originalPos;
         }
     }
@@ -51,8 +55,14 @@ public class ScreenShake : MonoBehaviour
     {
         if(collision.CompareTag("Hit"))
         {
-            shake = 1;
+            shake = shakeTime;
         }
+    }
+
+    public void Shake(float quakePower,float quakeTime)
+    {
+        shakeAmount = quakePower;
+        shake = quakeTime;
     }
 
 }

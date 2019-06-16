@@ -10,7 +10,7 @@ public class EventManager : MonoBehaviour
 
     int prevEvent = 0;
 
-    public HealKitManager healkitMgr;
+    ScoreManager scoreMgr;
 
     int eventCount = 0;
     int curEvent = 0;
@@ -19,14 +19,10 @@ public class EventManager : MonoBehaviour
         PLAY,
         END,
     }
-    eEventState curState;
+    public eEventState curState;
 
     float restTime = 0.0f;
     float restInterval = 4.0f;
-
-    public Text ScoreText = null;      // Inspector
-    int curScore = 0;
-    int addScore = 1;
 
     public void Start()
     {
@@ -36,8 +32,8 @@ public class EventManager : MonoBehaviour
         {
             Events.Add(transform.GetChild(i).GetComponent<Event>());
         }
-
-        healkitMgr = GetComponent<HealKitManager>();
+        
+        scoreMgr = GameObject.Find("UI").GetComponent<ScoreManager>();
 
         Init();
     }
@@ -50,7 +46,7 @@ public class EventManager : MonoBehaviour
                 if (Events[curEvent].curState == Event.ePlayEventState.PLAYEND)
                 {
                     curState = eEventState.END;
-                    healkitMgr.Create();
+                    scoreMgr.curEvent = ScoreManager.eEventState.END;
                 }
                 break;
 
@@ -60,9 +56,6 @@ public class EventManager : MonoBehaviour
                 {
                     restTime = 0.0f;
 
-                    curScore += addScore;
-                    ScoreText.text = curScore.ToString();
-
                     Init();
                 }
                 break;
@@ -71,8 +64,11 @@ public class EventManager : MonoBehaviour
 
     void Init()
     {
+        Events[curEvent].EventEnd();
+        Events[curEvent].curState = Event.ePlayEventState.PLAYEND;
+
         curEvent = Random.Range(0, eventCount);
-        while (true)
+        while (eventCount != 1)
         {
             if (curEvent != prevEvent)
             {
@@ -80,9 +76,10 @@ public class EventManager : MonoBehaviour
             }
             curEvent = Random.Range(0, eventCount);
         }
-        Debug.Log(curEvent + " " + eventCount);
+
         Events[curEvent].Reset();
         curState = eEventState.PLAY;
+        scoreMgr.curEvent = ScoreManager.eEventState.START;
         prevEvent = curEvent;
     }
 }
