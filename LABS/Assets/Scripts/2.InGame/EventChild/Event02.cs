@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class Event02 : Event
 {
-    [SerializeField]
     SpriteRenderer[] dangerPizza = new SpriteRenderer[5];
-    [SerializeField]
+
     Transform[] playPizza = new Transform[5];
     Vector3[] defaultPos = new Vector3[5];
     Quaternion[] defaultRot = new Quaternion[5];
+
+    int maxPizzaCount = 5;
 
     [SerializeField]
     Sprite pizzaImage; // inspector
 
     float pizzaTime = 0.0f;
     [SerializeField]
-    float pizzaInterval = .5f;
-    [SerializeField]
+    float pizzaInterval = 0;
     int pizzaCount = 0;
 
     [SerializeField]
@@ -26,11 +26,16 @@ public class Event02 : Event
     {
         base.Start();
 
-        for (int i = 0; i < 5; i++)
+        pizzaInterval = dangerInterval / 5.0f;
+        
+        for (int i = 0; i < maxPizzaCount; i++)
         {
-            dangerPizza[i] = Config[(int)eConfig.DANGER].transform.GetChild(i).GetComponent<SpriteRenderer>();
+            dangerPizza[i] = Config[(int)eConfig.DANGER].transform.GetChild(i).GetChild(0).GetComponent<SpriteRenderer>();
+
+            dangerPizza[i].sprite = nullSprite;
 
             playPizza[i] = Config[(int)eConfig.PLAY].transform.GetChild(i);
+
             defaultPos[i] = playPizza[i].transform.position;
             defaultRot[i] = playPizza[i].transform.rotation;
         }
@@ -53,26 +58,43 @@ public class Event02 : Event
         {
             pizzaTime = 0;
             dangerPizza[pizzaCount++].sprite = pizzaImage;
+            pizzaCount %= 5;
+        }
+
+        for (int i = 0; i < pizzaCount; i++)
+        {
+            Vector3 dir = player.transform.position - dangerPizza[i].transform.parent.position;
+
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            dangerPizza[i].transform.parent.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
     }
 
     public override void PlayStart()
     {
+        for (int i = 0; i < maxPizzaCount; ++i)
+        {
+            playPizza[i].transform.rotation = dangerPizza[i].transform.parent.rotation;
+        }
+
+        playUpdateCount = 0;
+        pizzaAniTime = 0;
+
         base.PlayStart();
     }
 
-    [SerializeField]
     int playUpdateCount = 0;
     float pizzaAniTime = 0.0f;
+    [SerializeField]
     float pizzaAniInterval = 1f;
     public override void PlayUpdate()
     {
         base.PlayUpdate();
-
-        for (int i = playUpdateCount; i < 5; i++)
+        
+        for (int i = playUpdateCount; i < maxPizzaCount; i++)
         {
             Vector3 dir = player.transform.position - playPizza[i].position;
-            
+
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             playPizza[i].rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
@@ -81,8 +103,14 @@ public class Event02 : Event
         if (pizzaAniTime >= (pizzaAniInterval - .01))
         {
             pizzaAniTime = 0;
-            playUpdateCount++;
-            playUpdateCount %= (int)playInterval;
+            if (maxPizzaCount <= playUpdateCount)
+            {
+                playUpdateCount = maxPizzaCount;
+            }
+            else
+            {
+                playUpdateCount++;
+            }
         }
 
         for (int i = 0; i < playUpdateCount; ++i)
@@ -93,8 +121,6 @@ public class Event02 : Event
 
     public override void EventEnd()
     {
-        base.EventEnd();
-
         for (int i = 0; i < 5; i++) 
         {
             dangerPizza[i].sprite = nullSprite;
@@ -102,5 +128,8 @@ public class Event02 : Event
             playPizza[i].transform.position = defaultPos[i];
             playPizza[i].transform.rotation = defaultRot[i];
         }
+
+        base.EventEnd();
     }
+    
 }

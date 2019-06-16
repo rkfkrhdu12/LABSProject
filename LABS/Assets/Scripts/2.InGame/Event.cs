@@ -47,6 +47,8 @@ public class Event : MonoBehaviour
 
         dangerTime = 0.0f;
         playTime = 0.0f;
+
+        curState = ePlayEventState.PLAYEND;
     }
 
     public void Reset()
@@ -123,6 +125,7 @@ public class Event : MonoBehaviour
 
     virtual public void EventEnd()
     {
-
+        Config[(int)eConfig.PLAY].SetActive(false);
+        Config[(int)eConfig.DANGER].SetActive(false);
     }
 }

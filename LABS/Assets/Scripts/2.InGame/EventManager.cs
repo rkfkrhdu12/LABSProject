@@ -8,6 +8,8 @@ public class EventManager : MonoBehaviour
     [SerializeField]
     List<Event> Events = new List<Event>();
 
+    int prevEvent = 0;
+
     public HealKitManager healkitMgr;
 
     int eventCount = 0;
@@ -37,6 +39,7 @@ public class EventManager : MonoBehaviour
 
         healkitMgr = GetComponent<HealKitManager>();
 
+        Init();
     }
     
     public void Update()
@@ -69,8 +72,17 @@ public class EventManager : MonoBehaviour
     void Init()
     {
         curEvent = Random.Range(0, eventCount);
+        while (true)
+        {
+            if (curEvent != prevEvent)
+            {
+                break;
+            }
+            curEvent = Random.Range(0, eventCount);
+        }
         Debug.Log(curEvent + " " + eventCount);
         Events[curEvent].Reset();
         curState = eEventState.PLAY;
+        prevEvent = curEvent;
     }
 }
