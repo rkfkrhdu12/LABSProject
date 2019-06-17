@@ -4,39 +4,74 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start
-    StartManager startMgr;
-    // InGame
-    InGameManager inGameMgr;
+    [SerializeField] StartManager    startMgr       = null; // inspector
+    [SerializeField] InGameManager   inGameMgr      = null; // inspector
+    [SerializeField] GameOverManager gameOverMgr    = null; // inspector
 
-    EventManager eventMgr;
-    ScoreManager scoreMgr;
-    PlayerController player;
-
-    [SerializeField] GameObject StartScreen; // inspector
-    [SerializeField] GameObject InGameScreen; // inspector
-    [SerializeField] GameObject GameOverScreen; // inspector
-
-    void Start()
+    private void Awake()
     {
-        StartScreen.SetActive(true);
-        startMgr = StartScreen.GetComponent<StartManager>();
-
-        InGameScreen.SetActive(true);
-        inGameMgr = InGameScreen.GetComponent<InGameManager>();
-
-        eventMgr = inGameMgr.eventMgr;
-        scoreMgr = inGameMgr.scoreMgr;
-        player = inGameMgr.player;
+        StartInit();
+        InGameInit();
+        GameOverInit();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(startMgr.isGameStart)
         {
-            StartScreen.SetActive(false);
-            InGameScreen.SetActive(true);
+            startMgr.isGameStart = false;
+            startMgr.SetActive(false);
+
+            inGameMgr.SetActive(true);
+            inGameMgr.ReSet();
         }
+
+        if(inGameMgr.isPlayerDead)
+        {
+            inGameMgr.isPlayerDead = false;
+            inGameMgr.SetActive(false);
+
+            gameOverMgr.SetActive(true);
+            gameOverMgr.ReSet();
+            gameOverMgr.ScoreStart(inGameMgr.GetScore());
+        }
+
+        if (gameOverMgr.isGoMainMenu)
+        {
+            gameOverMgr.isGoMainMenu = false;
+            gameOverMgr.SetActive(false);
+
+            startMgr.SetActive(true);
+            startMgr.ReSet();
+        }
+
+        if (gameOverMgr.isReStart)
+        {
+            gameOverMgr.isReStart = false;
+            gameOverMgr.SetActive(false);
+
+            inGameMgr.SetActive(true);
+            inGameMgr.ReSet();
+        }
+    }
+    
+    void StartInit()
+    {
+        startMgr.SetActive(true);
+        startMgr.Init();
+    }
+
+    void InGameInit()
+    {
+        inGameMgr.SetActive(true);
+        inGameMgr.Init();
+        inGameMgr.SetActive(false);
+    }
+
+    void GameOverInit()
+    {
+        gameOverMgr.SetActive(true);
+        gameOverMgr.Init();
+        gameOverMgr.SetActive(false);
     }
 }

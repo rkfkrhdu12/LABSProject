@@ -10,16 +10,13 @@ public class ScoreManager : MonoBehaviour
      * 이벤트 안맞고 클리어시 200점
      */
 
+    [SerializeField]
     Text scoreText;
     int score;
     void Start()
     {
         Init();
-
-        scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
-
-        curEvent = eEventState.REST;
-        isPlayerCol = false;
+        ReSet();
     }
 
     public eEventState curEvent;
@@ -82,9 +79,21 @@ public class ScoreManager : MonoBehaviour
         return score;
     }
 
+    bool isInit = false;
     public void Init()
+    {
+        if (isInit) return;
+
+        isInit = true;
+        scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
+
+        curEvent = eEventState.REST;
+    }
+
+    public void ReSet()
     {
         score = 0;
         scoreText.text = score.ToString();
+        isPlayerCol = false;
     }
 }

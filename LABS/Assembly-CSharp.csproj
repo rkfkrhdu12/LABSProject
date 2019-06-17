@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\2.InGame\EventChild\Event01.cs" />
     <Compile Include="Assets\Scripts\2.InGame\EventChild\Event02.cs" />
     <Compile Include="Assets\Scripts\2.InGame\EventChild\Event03.cs" />
+    <Compile Include="Assets\Scripts\2.InGame\EventChild\Event04.cs" />
     <Compile Include="Assets\Scripts\2.InGame\EventManager.cs" />
     <Compile Include="Assets\Scripts\2.InGame\EventPlay.cs" />
     <Compile Include="Assets\Scripts\2.InGame\InGameManager.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Assets\Scripts\2.InGame\ScoreManager.cs" />
     <Compile Include="Assets\Scripts\2.InGame\ScreenShake.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\GameOverManager.cs" />
     <Compile Include="Assets\Scripts\StartManager.cs" />
     <Compile Include="Assets\Scripts\Test\testScripts.cs" />
     <Reference Include="Unity.Timeline.Editor">

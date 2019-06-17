@@ -47,16 +47,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        rigid2D = GetComponent<Rigidbody2D>();
-        sprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
-
-        hitAniInterval = hitInterval / 6;
-
-        scoreMgr = GameObject.Find("UI").GetComponent<ScoreManager>();
-
-        hp = GameObject.Find("Hp");
-
         Init();
+        ReSet();
     }
     
     void Update()
@@ -103,14 +95,21 @@ public class PlayerController : MonoBehaviour
         
         ++jumpCount;
     }
-    
+
+    public bool isDead = false;
     void Hit()
     {
         if(isHit) { return; }
 
         scoreMgr.curEvent = ScoreManager.eEventState.COL;
+        Debug.Log("Col");
 
         hp.transform.GetChild(--health).gameObject.SetActive(false);
+        if(health <= 0)
+        {
+            isDead = true;
+        }
+
         isHit = true;
     }
 
@@ -146,15 +145,31 @@ public class PlayerController : MonoBehaviour
         return health;
     }
 
+    bool isInit = false;
     public void Init()
     {
+        if (isInit) return;
+
+        isInit = true;
+
+        rigid2D = GetComponent<Rigidbody2D>();
+        sprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
+
+        hitAniInterval = hitInterval / 6;
+
+        scoreMgr = GameObject.Find("UI").GetComponent<ScoreManager>();
+
+        hp = GameObject.Find("Hp");
+    }
+
+    public void ReSet()
+    {
         health = 3;
+        isDead = false;
         for (int i = 0; i < health; ++i) 
         {
             hp.transform.GetChild(i).gameObject.SetActive(true);
         }
-
-        transform.localPosition = new Vector3(0, 0, -10);
     }
     
     private void OnTriggerStay2D(Collider2D collision)

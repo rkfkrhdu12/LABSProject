@@ -22,9 +22,9 @@ public class Event02 : Event
 
     [SerializeField]
     float pizzaSpeed = 3;
-    public override void Start()
+    public override void Awake()
     {
-        base.Start();
+        base.Awake();
 
         pizzaInterval = dangerInterval / 5.0f;
         
@@ -67,16 +67,12 @@ public class Event02 : Event
 
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             dangerPizza[i].transform.parent.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            playPizza[i].transform.rotation = dangerPizza[i].transform.parent.rotation;
         }
     }
 
     public override void PlayStart()
     {
-        for (int i = 0; i < maxPizzaCount; ++i)
-        {
-            playPizza[i].transform.rotation = dangerPizza[i].transform.parent.rotation;
-        }
-
         playUpdateCount = 0;
         pizzaAniTime = 0;
 

@@ -6,9 +6,9 @@ public class Event01 : Event
 {
     Vector3 defaultVector;
 
-    public override void Start()
+    public override void Awake()
     {
-        base.Start();
+        base.Awake();
 
         defaultVector = Config[(int)eConfig.PLAY].transform.position;
     }

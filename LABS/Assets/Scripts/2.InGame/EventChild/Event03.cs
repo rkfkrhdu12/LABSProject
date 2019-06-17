@@ -13,18 +13,18 @@ public class Event03 : Event
     [SerializeField] eDangerConfig curDangerState = eDangerConfig.Update;
 
     [SerializeField] SpriteRenderer[] dangerImage = new SpriteRenderer[11];
-    int dangerLeftFrog = 9;
-    [SerializeField] Sprite[] leftFrogSprite = new Sprite[2]; // inspector
-    int dangerRightFrog = 10;
+    int dangerRightFrog = 9;
     [SerializeField] Sprite[] rightFrogSprite = new Sprite[2]; // inspector
+    int dangerLeftFrog = 10;
+    [SerializeField] Sprite[] leftFrogSprite = new Sprite[2]; // inspector
     Color imageColor;
     [SerializeField] float alphaTimeInterval = 2;
 
     [SerializeField] ScreenShake scnShake = null;
 
-    public override void Start()
+    public override void Awake()
     {
-        base.Start();
+        base.Awake();
         for (int i = 0; i < Config[(int)eConfig.DANGER].transform.childCount; ++i)
         {
             dangerConfig[i] = Config[(int)eConfig.DANGER].transform.GetChild(i);
@@ -75,8 +75,8 @@ public class Event03 : Event
 
             case eDangerConfig.End:
                 dangerConfig[(int)eDangerConfig.End].gameObject.SetActive(true);
-                dangerImage[dangerLeftFrog].sprite = leftFrogSprite[1];
                 dangerImage[dangerRightFrog].sprite = rightFrogSprite[1];
+                dangerImage[dangerLeftFrog].sprite = leftFrogSprite[1];
                 break;
 
         }
@@ -98,7 +98,7 @@ public class Event03 : Event
         imageColor = new Color(1, 1, 1, 1);
         imageColor.a = 0;
 
-        dangerImage[dangerLeftFrog].sprite = leftFrogSprite[0];
+        dangerImage[dangerRightFrog].sprite = rightFrogSprite[0];
         dangerImage[dangerRightFrog].sprite = rightFrogSprite[0];
 
         for (int i = 0; i < dangerConfig[(int)eDangerConfig.Update].childCount; ++i)

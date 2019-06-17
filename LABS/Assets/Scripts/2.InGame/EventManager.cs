@@ -24,7 +24,7 @@ public class EventManager : MonoBehaviour
     float restTime = 0.0f;
     float restInterval = 4.0f;
 
-    public void Start()
+    public void Init()
     {
         eventCount = transform.childCount;
 
@@ -32,10 +32,21 @@ public class EventManager : MonoBehaviour
         {
             Events.Add(transform.GetChild(i).GetComponent<Event>());
         }
-        
-        scoreMgr = GameObject.Find("UI").GetComponent<ScoreManager>();
 
-        Init();
+        scoreMgr = GameObject.Find("UI").GetComponent<ScoreManager>();
+    }
+
+    public void ReSet()
+    {
+        curState = eEventState.END;
+        restTime = 0;
+    }
+
+    public void Start()
+    {
+        
+
+        ReStart();
     }
     
     public void Update()
@@ -56,13 +67,13 @@ public class EventManager : MonoBehaviour
                 {
                     restTime = 0.0f;
 
-                    Init();
+                    ReStart();
                 }
                 break;
         }
     }
 
-    void Init()
+    void ReStart()
     {
         Events[curEvent].EventEnd();
         Events[curEvent].curState = Event.ePlayEventState.PLAYEND;
@@ -82,4 +93,6 @@ public class EventManager : MonoBehaviour
         scoreMgr.curEvent = ScoreManager.eEventState.START;
         prevEvent = curEvent;
     }
+
+
 }

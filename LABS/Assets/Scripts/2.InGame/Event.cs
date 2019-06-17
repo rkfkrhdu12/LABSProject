@@ -12,7 +12,7 @@ public class Event : MonoBehaviour
         PLAY,
     }
 
-    protected GameObject player;
+    protected PlayerController player;
 
     public enum ePlayEventState
     {
@@ -38,9 +38,9 @@ public class Event : MonoBehaviour
     [SerializeField]
     protected Sprite nullSprite; // inspector
 
-    virtual public void Start()
+    virtual public void Awake()
     {
-        player = GameObject.Find("Player").gameObject;
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
 
         Config[(int)eConfig.DANGER] = transform.GetChild((int)eConfig.DANGER).gameObject;
         Config[(int)eConfig.PLAY] = transform.GetChild((int)eConfig.PLAY).gameObject;
@@ -53,7 +53,7 @@ public class Event : MonoBehaviour
     {
         curState = ePlayEventState.DANGERSTART;
     }
-
+    
     public virtual void Update()
     {
         switch(curState)
@@ -123,6 +123,17 @@ public class Event : MonoBehaviour
 
     virtual public void EventEnd()
     {
+        Config[(int)eConfig.PLAY].SetActive(false);
+        Config[(int)eConfig.DANGER].SetActive(false);
+    }
+
+    public void ReSet()
+    {
+        dangerTime = 0.0f;
+        playTime = 0.0f;
+
+        curState = ePlayEventState.PLAYEND;
+
         Config[(int)eConfig.PLAY].SetActive(false);
         Config[(int)eConfig.DANGER].SetActive(false);
     }

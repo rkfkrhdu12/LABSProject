@@ -7,7 +7,7 @@ public class StartManager : MonoBehaviour
     [SerializeField] GameObject defaultScr;
     [SerializeField] GameObject infoScr;
 
-    eStartState curState;
+    [SerializeField] eStartState curState;
     enum eStartState
     {
         DEFAULT,
@@ -19,9 +19,10 @@ public class StartManager : MonoBehaviour
     float gameStartInterval = 2.0f;
     public bool isGameStart = false;
 
-    void Start()
+    void Awake()
     {
         Init();
+        ReSet();
     }
 
     void Update()
@@ -59,8 +60,19 @@ public class StartManager : MonoBehaviour
 
     public void Init()
     {
+        defaultScr = transform.GetChild(0).gameObject;
+        infoScr = transform.GetChild(1).gameObject;
+    }
+
+    public void ReSet()
+    {
         curState = eStartState.DEFAULT;
         defaultScr.SetActive(true);
         infoScr.SetActive(false);
+    }
+
+    public void SetActive(bool isActive)
+    {
+        gameObject.SetActive(isActive);
     }
 }
