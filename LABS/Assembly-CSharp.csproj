@@ -66,6 +66,8 @@
     <Compile Include="Assets\Scripts\2.InGame\EventChild\Event02.cs" />
     <Compile Include="Assets\Scripts\2.InGame\EventChild\Event03.cs" />
     <Compile Include="Assets\Scripts\2.InGame\EventChild\Event04.cs" />
+    <Compile Include="Assets\Scripts\2.InGame\EventChild\Event05.cs" />
+    <Compile Include="Assets\Scripts\2.InGame\EventChild\Event06.cs" />
     <Compile Include="Assets\Scripts\2.InGame\EventManager.cs" />
     <Compile Include="Assets\Scripts\2.InGame\EventPlay.cs" />
     <Compile Include="Assets\Scripts\2.InGame\InGameManager.cs" />

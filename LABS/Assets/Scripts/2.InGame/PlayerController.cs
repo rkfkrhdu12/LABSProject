@@ -102,7 +102,6 @@ public class PlayerController : MonoBehaviour
         if(isHit) { return; }
 
         scoreMgr.curEvent = ScoreManager.eEventState.COL;
-        Debug.Log("Col");
 
         hp.transform.GetChild(--health).gameObject.SetActive(false);
         if(health <= 0)

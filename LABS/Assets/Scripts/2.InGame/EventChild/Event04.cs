@@ -4,34 +4,36 @@ using UnityEngine;
 
 public class Event04 : Event
 {
-    [SerializeField]
     Transform[] bug = new Transform[12];
-    [SerializeField]
+    Vector3[] defaultPos = new Vector3[2];
+
     float[] bugSpeed = new float[12];
+
+    [SerializeField] float minSpeed = 7;
+    [SerializeField] float maxSpeed = 14;
+
+    [SerializeField] int bugCount = 6;
 
     public override void Awake()
     {
         base.Awake();
 
-        int childNumber = 0;
-        int countNumber = 0;
-        for (int i = 0; i < 12; ++i, ++countNumber) 
+        defaultPos[0] = Config[(int)eConfig.PLAY].transform.GetChild(0).position;
+        defaultPos[1] = Config[(int)eConfig.PLAY].transform.GetChild(1).position;
+        
+        for (int i = 0; i < bugCount; ++i) 
         {
-            if(i == 6)
-            {
-                countNumber = 0;
-                childNumber++;
-            }
-
-            bug[i] = Config[(int)eConfig.PLAY].transform.GetChild(childNumber).GetChild(countNumber);
+            bug[i] = Config[(int)eConfig.PLAY].transform.GetChild(0).GetChild(i);
+            bug[i + bugCount] = Config[(int)eConfig.PLAY].transform.GetChild(1).GetChild(i);
         }
     }
 
     public override void PlayStart()
     {
-        for (int i = 0; i < 12; ++i)
+        for (int i = 0; i < bugCount; ++i)
         {
-            bugSpeed[i] = Random.Range(3, 10);
+            bugSpeed[i] = Random.Range(minSpeed, maxSpeed);
+            bugSpeed[i + bugCount] = Random.Range(minSpeed, maxSpeed);
         }
 
         base.PlayStart();
@@ -41,17 +43,23 @@ public class Event04 : Event
     {
         base.PlayUpdate();
 
-        for (int i = 0; i < 12; ++i)
+        for (int i = 0; i < bugCount; ++i)
         {
-            if (i < 6)
-            {
-                bug[i].Translate(-bugSpeed[i] * Time.deltaTime, 0, 0);
-            }
-            else
-            {
-                bug[i].Translate(bugSpeed[i] * Time.deltaTime, 0, 0);
-            }
+            bug[i].Translate(-bugSpeed[i] * Time.deltaTime, 0, 0);
+            bug[i + bugCount].Translate(bugSpeed[i + bugCount] * Time.deltaTime, 0, 0);
+            
         }
 
+    }
+
+    public override void EventEnd()
+    {
+        for (int i = 0; i < bugCount; ++i)
+        {
+            bug[i].position = defaultPos[0];
+            bug[i + bugCount].position = defaultPos[1];
+        }
+
+        base.EventEnd();
     }
 }
