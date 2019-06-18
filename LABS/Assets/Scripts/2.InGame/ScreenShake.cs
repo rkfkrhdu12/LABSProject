@@ -51,13 +51,13 @@ public class ScreenShake : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("Hit"))
-        {
-            shake = shakeTime;
-        }
-    }
+    //void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if(collision.CompareTag("Hit"))
+    //    {
+    //        shake = shakeTime;
+    //    }
+    //}
 
     public void Shake(float quakePower,float quakeTime)
     {
@@ -65,4 +65,8 @@ public class ScreenShake : MonoBehaviour
         shake = quakeTime;
     }
 
+    public void Shake()
+    {
+        shake = shakeTime;
+    }
 }

@@ -24,5 +24,10 @@ public class Event01 : Event
     {
         gameObject.transform.position = new Vector3(player.transform.position.x, gameObject.transform.position.y);
     }
-
+    
+    public override void PlayStart()
+    {
+        GameObject.Find("GroundColTrigger").GetComponent<ScreenShake>().Shake();
+        base.PlayStart();
+    }
 }

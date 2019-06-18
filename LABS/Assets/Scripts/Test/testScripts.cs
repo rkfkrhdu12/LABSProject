@@ -5,51 +5,53 @@ using UnityEngine.UI;
 
 public class testScripts : MonoBehaviour
 {
-    public SpriteRenderer a;
-    Color c;
-    bool isOn = false;
-    float timer = 0;
-    public float Timer = 2;
-    
-    void Start()
+    [SerializeField] eGhostDir dir = eGhostDir.LEFT;
+    enum eGhostDir
     {
-        c = a.color;
-        c.a = 0;
-        a.color = c;
+        LEFT,
+        RIGHT
     }
 
-    public void Update()
+    private void Awake()
     {
-        a.color = c;
-        if (isOn)
+        dir = eGhostDir.LEFT;
+
+        SpeedInit();
+    }
+
+    [SerializeField] float speed = 3;
+    void Update()
+    {
+        transform.Translate(speed * Time.deltaTime, 0, 0);
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.name == Direction())
         {
-            if (c.a >= 1)
-            {
-                c.a = 1;
-            }
-            else
-            {
-                timer += Time.deltaTime;
-                c.a += Time.deltaTime / Timer;
-            }
+            Destroy(gameObject);
         }
-        Debug.Log((int)timer + "   "  + c);
-
     }
 
-    public void U()
+    void SpeedInit()
     {
-        if (isOn)
+        if (dir == eGhostDir.LEFT)
         {
-            c = a.color;
-            c.a = 0;
-            a.color = c;
-
-            isOn = false;
+            speed = 3;
         }
         else
         {
-            isOn = true;
+            speed = -3;
         }
+    }
+
+    string Direction()
+    {
+        if(dir == eGhostDir.LEFT)
+            return "LeftEnd";
+        else
+            return "RightEnd";
+
     }
 }

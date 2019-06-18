@@ -60,16 +60,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\2.InGame\Event.cs" />
-    <Compile Include="Assets\Scripts\2.InGame\EventAnimationPlay.cs" />
-    <Compile Include="Assets\Scripts\2.InGame\EventChild\Event01.cs" />
-    <Compile Include="Assets\Scripts\2.InGame\EventChild\Event02.cs" />
-    <Compile Include="Assets\Scripts\2.InGame\EventChild\Event03.cs" />
-    <Compile Include="Assets\Scripts\2.InGame\EventChild\Event04.cs" />
-    <Compile Include="Assets\Scripts\2.InGame\EventChild\Event05.cs" />
-    <Compile Include="Assets\Scripts\2.InGame\EventChild\Event06.cs" />
+    <Compile Include="Assets\Scripts\2.InGame\Event\Event.cs" />
+    <Compile Include="Assets\Scripts\2.InGame\Event\EventChild\Event01.cs" />
+    <Compile Include="Assets\Scripts\2.InGame\Event\EventChild\Event01\EventAnimationPlay.cs" />
+    <Compile Include="Assets\Scripts\2.InGame\Event\EventChild\Event01\EventPlay.cs" />
+    <Compile Include="Assets\Scripts\2.InGame\Event\EventChild\Event02.cs" />
+    <Compile Include="Assets\Scripts\2.InGame\Event\EventChild\Event03.cs" />
+    <Compile Include="Assets\Scripts\2.InGame\Event\EventChild\Event04.cs" />
+    <Compile Include="Assets\Scripts\2.InGame\Event\EventChild\Event05.cs" />
+    <Compile Include="Assets\Scripts\2.InGame\Event\EventChild\Event06.cs" />
+    <Compile Include="Assets\Scripts\2.InGame\Event\EventChild\Event06\EventEndObj.cs" />
+    <Compile Include="Assets\Scripts\2.InGame\Event\EventChild\Event06\EventGhost.cs" />
     <Compile Include="Assets\Scripts\2.InGame\EventManager.cs" />
-    <Compile Include="Assets\Scripts\2.InGame\EventPlay.cs" />
     <Compile Include="Assets\Scripts\2.InGame\InGameManager.cs" />
     <Compile Include="Assets\Scripts\2.InGame\Object.cs" />
     <Compile Include="Assets\Scripts\2.InGame\PlayerController.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="Assets\Scripts\GameOverManager.cs" />
     <Compile Include="Assets\Scripts\StartManager.cs" />
     <Compile Include="Assets\Scripts\Test\testScripts.cs" />
+    <Compile Include="Assets\Scripts\Test\testScripts1.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Users/rkfkr/Documents/GitHub/LABSProject/LABS/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
