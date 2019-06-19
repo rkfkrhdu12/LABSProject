@@ -16,6 +16,7 @@ public class EventAnimationPlay : MonoBehaviour
     public void Play()
     {
         ani.SetTrigger("IsPlay");
+        GameObject.Find("GroundColTrigger").GetComponent<ScreenShake>().Shake();
         isEnd = false;
     }
 

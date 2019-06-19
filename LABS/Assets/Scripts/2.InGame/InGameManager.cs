@@ -12,6 +12,7 @@ public class InGameManager : MonoBehaviour
     {
         Init();
     }
+    
 
     public bool isPlayerDead = false;
     void Update()

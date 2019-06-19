@@ -33,6 +33,9 @@ public class Event06 : Event
     public override void PlayStart()
     {
         base.PlayStart();
+
+        player.transform.position = Config[(int)eConfig.PLAY].transform.GetChild(2).position;
+
         spawnTime = spawnInterval/2;
     }
 

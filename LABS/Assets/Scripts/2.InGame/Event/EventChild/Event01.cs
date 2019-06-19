@@ -27,7 +27,6 @@ public class Event01 : Event
     
     public override void PlayStart()
     {
-        GameObject.Find("GroundColTrigger").GetComponent<ScreenShake>().Shake();
         base.PlayStart();
     }
 }

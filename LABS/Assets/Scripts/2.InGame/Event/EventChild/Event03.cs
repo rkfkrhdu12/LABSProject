@@ -99,7 +99,7 @@ public class Event03 : Event
         imageColor.a = 0;
 
         dangerImage[dangerRightFrog].sprite = rightFrogSprite[0];
-        dangerImage[dangerRightFrog].sprite = rightFrogSprite[0];
+        dangerImage[dangerLeftFrog].sprite = leftFrogSprite[0];
 
         for (int i = 0; i < dangerConfig[(int)eDangerConfig.Update].childCount; ++i)
         {

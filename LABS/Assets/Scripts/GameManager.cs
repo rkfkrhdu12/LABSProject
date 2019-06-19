@@ -58,20 +58,17 @@ public class GameManager : MonoBehaviour
     void StartInit()
     {
         startMgr.SetActive(true);
-        startMgr.Init();
     }
 
     void InGameInit()
     {
         inGameMgr.SetActive(true);
-        inGameMgr.Init();
         inGameMgr.SetActive(false);
     }
 
     void GameOverInit()
     {
         gameOverMgr.SetActive(true);
-        gameOverMgr.Init();
         gameOverMgr.SetActive(false);
     }
 }

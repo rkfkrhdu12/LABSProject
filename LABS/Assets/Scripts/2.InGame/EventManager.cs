@@ -40,6 +40,11 @@ public class EventManager : MonoBehaviour
     {
         curState = eEventState.END;
         restTime = 0;
+
+        for (int i = 0; i < eventCount; ++i) 
+        {
+            Events[i].ReSet();
+        }
     }
 
     public void Start()

@@ -1,25 +1,43 @@
 fileFormatVersion: 2
-guid: e11322f60d19bb344a95f9c140615da8
+guid: f90e17e2c69516a4da444bc02fe38e9d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3901194898830817658
-    second: Bug_Left_0
+      213: 7032393211003545861
+    second: bug_Left 1_0
   - first:
-      213: 7265614794681704627
-    second: Bug_Left_1
+      213: -8179579696306136678
+    second: bug_Left 1_1
   - first:
-      213: -7779176255648830115
-    second: Bug_Left_2
+      213: 8505145793573054146
+    second: bug_Left 1_2
   - first:
-      213: -2718112749228017723
-    second: Bug_Left_3
+      213: -2154483806315912288
+    second: bug_Left 1_3
   - first:
-      213: 3971075247275962709
-    second: Bug_Left_4
+      213: 5809539287166312587
+    second: bug_Left 1_4
   - first:
-      213: -8849657958765692545
-    second: Bug_Left_5
+      213: -4270916246544053911
+    second: bug_Left 1_5
+  - first:
+      213: 1605212645526385472
+    second: bug_Left_0
+  - first:
+      213: 273644557932928327
+    second: bug_Left_1
+  - first:
+      213: 7648377327216102602
+    second: bug_Left_2
+  - first:
+      213: 4998150562649441714
+    second: bug_Left_3
+  - first:
+      213: 2480503222237463103
+    second: bug_Left_4
+  - first:
+      213: 6758385116101422456
+    second: bug_Left_5
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -65,7 +83,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -104,7 +122,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bug_Left_0
+      name: bug_Left_0
       rect:
         serializedVersion: 2
         x: 8
@@ -118,14 +136,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d9739903b0d8b24f9e27bb265c69a0b
-      internalID: 3901194898830817658
+      spriteID: 506789af0123c7f42843b9669ea307cf
+      internalID: 1605212645526385472
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bug_Left_1
+      name: bug_Left_1
       rect:
         serializedVersion: 2
         x: 118
@@ -139,14 +157,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c146532dfcebd934e8123ae2294de745
-      internalID: 7265614794681704627
+      spriteID: 3e6c2dca9d7e9344891b7ca845389a7f
+      internalID: 273644557932928327
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bug_Left_2
+      name: bug_Left_2
       rect:
         serializedVersion: 2
         x: 228
@@ -160,17 +178,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d342b7d07c58e6e4792eb2c680eb240a
-      internalID: -7779176255648830115
+      spriteID: c9e0d6585018e294197e3c38a4e14708
+      internalID: 7648377327216102602
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bug_Left_3
+      name: bug_Left_3
       rect:
         serializedVersion: 2
-        x: 6
+        x: 8
         y: 0
         width: 91
         height: 35
@@ -181,14 +199,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d74e5c0ae5d11af458ebd19a2415cca9
-      internalID: -2718112749228017723
+      spriteID: 31b86459717e15444bba2dcd4af52474
+      internalID: 4998150562649441714
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bug_Left_4
+      name: bug_Left_4
       rect:
         serializedVersion: 2
         x: 118
@@ -202,14 +220,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa28fdefcabc02344a04e663d0a055bb
-      internalID: 3971075247275962709
+      spriteID: 5b9f7be38b285644781036fc7e059a5b
+      internalID: 2480503222237463103
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bug_Left_5
+      name: bug_Left_5
       rect:
         serializedVersion: 2
         x: 228
@@ -223,8 +241,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06bce5bfc445edf468e31dd2d0e2d34b
-      internalID: -8849657958765692545
+      spriteID: 3126bdbbdb96b604fbb66e59d511c295
+      internalID: 6758385116101422456
       vertices: []
       indices: 
       edges: []
