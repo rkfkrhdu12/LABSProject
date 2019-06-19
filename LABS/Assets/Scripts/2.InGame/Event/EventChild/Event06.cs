@@ -36,7 +36,7 @@ public class Event06 : Event
 
         player.transform.position = Config[(int)eConfig.PLAY].transform.GetChild(2).position;
 
-        spawnTime = spawnInterval;
+        spawnTime = 0;
     }
 
     float spawnTime = 0.0f;
