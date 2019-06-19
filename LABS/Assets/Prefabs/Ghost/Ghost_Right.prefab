@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dir: 0
-  speed: 5.99999
+  speed: 5.99
 --- !u!95 &1895470122873856573
 Animator:
   serializedVersion: 3
