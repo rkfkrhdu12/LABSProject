@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
     {
         if(isGround) { jumpCount = 0; }
 
-        if (jumpCount == 2) { return; }
+        if (jumpCount >= 2) { return; }
 
         rigid2D.velocity = new Vector2(0, jumpPower);
         
@@ -151,6 +151,8 @@ public class PlayerController : MonoBehaviour
 
         isInit = true;
 
+        isGround = false;
+
         rigid2D = GetComponent<Rigidbody2D>();
         sprite = transform.GetChild(0).GetComponent<SpriteRenderer>();
 
@@ -165,6 +167,7 @@ public class PlayerController : MonoBehaviour
     {
         health = 3;
         isDead = false;
+        isGround = false;
         for (int i = 0; i < health; ++i) 
         {
             hp.transform.GetChild(i).gameObject.SetActive(true);

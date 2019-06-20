@@ -33,6 +33,7 @@ public class StartManager : MonoBehaviour
                 gameStartTime += Time.deltaTime;
                 if (gameStartTime >= gameStartInterval)
                 {
+                    gameStartTime = 0.0f;
                     curState = eStartState.START;
                 }
                 break;
