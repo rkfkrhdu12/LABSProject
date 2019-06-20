@@ -10,7 +10,7 @@ public class Event02 : Event
     Vector3[] defaultPos = new Vector3[5];
     Quaternion[] defaultRot = new Quaternion[5];
 
-    int maxPizzaCount = 5;
+    [SerializeField]     int maxPizzaCount = 5;
 
     [SerializeField]
     Sprite pizzaImage = null; // inspector
@@ -18,7 +18,7 @@ public class Event02 : Event
     float pizzaTime = 0.0f;
     [SerializeField]
     float pizzaInterval = 0;
-    int pizzaCount = 0;
+    [SerializeField] int pizzaCount = 0;
 
     [SerializeField]
     float pizzaSpeed = 3;
@@ -52,29 +52,33 @@ public class Event02 : Event
     public override void DangerUpdate()
     {
         base.DangerUpdate();
-
-        pizzaTime += Time.deltaTime;
-        if (pizzaTime >= (pizzaInterval - .01f)) 
-        {
-            pizzaTime = 0;
-            dangerPizza[pizzaCount++].sprite = pizzaImage;
-            pizzaCount %= 5;
-        }
-
+        
         for (int i = 0; i < pizzaCount; i++)
         {
-            Vector3 dir = player.transform.position - dangerPizza[i].transform.parent.position;
+            PlayerLookAts(dangerPizza[i].transform.parent);
+        }
 
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            dangerPizza[i].transform.parent.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            playPizza[i].transform.rotation = dangerPizza[i].transform.parent.rotation;
+        if (pizzaCount < maxPizzaCount)
+        {
+            pizzaTime += Time.deltaTime;
+            if (pizzaTime >= (pizzaInterval - .01f))
+            {
+                pizzaTime = 0;
+                PlayerLookAts(dangerPizza[pizzaCount].transform.parent);
+
+                dangerPizza[pizzaCount++].sprite = pizzaImage;
+            }
         }
     }
-
+    
     public override void PlayStart()
     {
         playUpdateCount = 0;
         pizzaAniTime = 0;
+        for (int i = 0; i < maxPizzaCount; i++)
+        {
+            PlayerLookAts(playPizza[i].transform);
+        }
 
         base.PlayStart();
     }
@@ -89,10 +93,7 @@ public class Event02 : Event
         
         for (int i = playUpdateCount; i < maxPizzaCount; i++)
         {
-            Vector3 dir = player.transform.position - playPizza[i].position;
-
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            playPizza[i].rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            PlayerLookAts(playPizza[i]);
         }
 
         pizzaAniTime += Time.deltaTime;
@@ -127,5 +128,12 @@ public class Event02 : Event
 
         base.EventEnd();
     }
-    
+
+    void PlayerLookAts(Transform trs)
+    {
+        Vector3 dir = player.transform.position - trs.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        trs.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    }
 }
