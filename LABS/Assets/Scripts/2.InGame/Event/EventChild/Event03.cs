@@ -13,9 +13,9 @@ public class Event03 : Event
     [SerializeField] eDangerConfig curDangerState = eDangerConfig.Update;
 
     [SerializeField] SpriteRenderer[] dangerImage = new SpriteRenderer[11];
-    int dangerRightFrog = 9;
+    int dangerLeftFrog = 9;
     [SerializeField] Sprite[] rightFrogSprite = new Sprite[2]; // inspector
-    int dangerLeftFrog = 10;
+    int dangerRightFrog = 10;
     [SerializeField] Sprite[] leftFrogSprite = new Sprite[2]; // inspector
     Color imageColor;
     [SerializeField] float alphaTimeInterval = 2;
