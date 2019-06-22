@@ -4,12 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour
 {
-    /*
-     * 초당 10점
-     * 풀피일때 힐킷먹으면 500점
-     * 이벤트 안맞고 클리어시 200점
-     */
-
     [SerializeField]
     Text scoreText;
     int score;
