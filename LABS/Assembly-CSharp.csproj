@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scripts\2.InGame\PlayerController.cs" />
     <Compile Include="Assets\Scripts\2.InGame\ScoreManager.cs" />
     <Compile Include="Assets\Scripts\2.InGame\ScreenShake.cs" />
+    <Compile Include="Assets\Scripts\AudioPlayer.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GameOverManager.cs" />
     <Compile Include="Assets\Scripts\StartManager.cs" />

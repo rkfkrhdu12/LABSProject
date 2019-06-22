@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Event01 : Event
 {
+    // 01_BookEvent.Player.Ani.AudioSourse 
+
     Vector3 defaultVector;
 
     public override void Awake()

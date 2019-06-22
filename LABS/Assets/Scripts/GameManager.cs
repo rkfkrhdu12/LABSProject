@@ -7,12 +7,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] StartManager    startMgr       = null; // inspector
     [SerializeField] InGameManager   inGameMgr      = null; // inspector
     [SerializeField] GameOverManager gameOverMgr    = null; // inspector
+    [SerializeField] AudioPlayer     audioPlayer    = null; // inspector
 
     private void Awake()
     {
         StartInit();
         InGameInit();
         GameOverInit();
+        BGSoundInit();
     }
 
     void Update()
@@ -70,5 +72,10 @@ public class GameManager : MonoBehaviour
     {
         gameOverMgr.SetActive(true);
         gameOverMgr.SetActive(false);
+    }
+
+    void BGSoundInit()
+    {
+        audioPlayer.PlaySound(AudioPlayer.eMusic.BG, GetComponent<AudioSource>(), true);
     }
 }

@@ -85,7 +85,10 @@ public class Event03 : Event
     public override void PlayStart()
     {
         base.PlayStart();
+
         scnShake.Shake(.3f, 2f);
+
+        audioPlayer.PlaySound(AudioPlayer.eMusic.E03, GetComponent<AudioSource>());
     }
 
     public override void PlayUpdate()

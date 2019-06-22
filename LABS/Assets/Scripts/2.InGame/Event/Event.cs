@@ -38,6 +38,9 @@ public class Event : MonoBehaviour
     [SerializeField]
     protected Sprite nullSprite; // inspector
 
+    [SerializeField]
+    protected AudioPlayer audioPlayer;
+
     virtual public void Awake()
     {
         player = GameObject.Find("Player").GetComponent<PlayerController>();

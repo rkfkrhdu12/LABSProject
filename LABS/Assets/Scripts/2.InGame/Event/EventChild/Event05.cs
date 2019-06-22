@@ -32,13 +32,17 @@ public class Event05 : Event
 
     public override void PlayStart()
     {
+        audioPlayer.PlaySound(AudioPlayer.eMusic.E05, GetComponent<AudioSource>());
+
         for (int i = 0; i < elkCount; ++i)
         {
             elkSpeed[i] = Random.Range(minSpeed, maxSpeed);
             elkSpeed[i + elkCount] = Random.Range(minSpeed, maxSpeed);
         }
+
         spawnTime = 0;
         curElkCount = 0;
+
         base.PlayStart();
     }
 

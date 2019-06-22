@@ -107,6 +107,8 @@ public class Event02 : Event
             else
             {
                 playUpdateCount++;
+
+                audioPlayer.PlaySound(AudioPlayer.eMusic.E02, GetComponent<AudioSource>());
             }
         }
 
